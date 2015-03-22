@@ -29,7 +29,7 @@ makeCacheMatrix <- function(parentMatrix = matrix()) {
                 return(parentInverse)                                      
             }
         # Construct and return a named list of the anonymous functions. These appear
-        # as a list callable functions within a resulting makeCacheMatrix() object,
+        # as a list of callable functions within a resulting makeCacheMatrix() object,
         # exposing them as "public".
      
         list (set = set,
@@ -48,7 +48,7 @@ cacheSolve <- function(mcmObject, ...) {
         # Retrieve the current inverse value within makeCacheMatrix object. 
         localInverse <- mcmObject$getinv()
 
-        # If value is not null, return the cached inverse. Otherwise, compute / cache / return the inverse.
+        # If value is not null, return the cached inverse. Otherwise, compute and cache inverse and return it.
         if(!is.null(localInverse)) {
              message("Inverse was cached - getting data.")
              return(localInverse)
