@@ -10,32 +10,32 @@ makeCacheMatrix <- function(parentMatrix = matrix()) {
         parentInverse <- NULL
 
             # Define four anonymous functions as follows:
-	      #   set()    - Stores or replaces parentMatrix value & clears parentInverse vector   		
+            #   set()    - Stores or replaces parentMatrix value & clears parentInverse vector                   
             #   get()    - Returns original parentMatrix object from parent environment
             #   setinv() - Stores inverse vector value from CacheSolve() in parent environment  
             #   getinv() - Returns cached inverse from parent environment - may be null if not cached
           
-	      set <- function(localMatrix) {		
+            set <- function(localMatrix) {                
                 parentMatrix <<- localMatrix
-		    parentInverse <<- NULL
+                parentInverse <<- NULL
             }
-            get <- function() {  	
-	          return(parentMatrix)
-	      }			
+            get <- function() {          
+                return(parentMatrix)
+            }                        
             setinv <- function(localInverse) {
                 parentInverse <<- localInverse
-	      }                        
+            }                        
             getinv <- function() { 
-                return(parentInverse)	                              
+                return(parentInverse)                                      
             }
         # Construct and return a named list of the anonymous functions. These appear
         # as a list callable functions within a resulting makeCacheMatrix() object,
         # exposing them as "public".
      
         list (set = set,
-	        get = get,
+              get = get,
               setinv = setinv,
-	        getinv = getinv) 
+              getinv = getinv) 
 }
 
 #     CacheSolve() Returns a previously cached inverse, if present, to reduce processing 
@@ -53,7 +53,7 @@ cacheSolve <- function(mcmObject, ...) {
              message("Inverse was cached - getting data.")
              return(localInverse)
         }
-	  else {
+        else {
              localInverse <- solve(mcmObject$get())
              mcmObject$setinv(localInverse)
              return(localInverse)
